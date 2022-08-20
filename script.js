@@ -1,18 +1,23 @@
 $(document).ready(function(){
-    $(".begin").on("click",function(){
-        $(".sec-A").addClass("showing");
-        $(".head").hide();
-    });
-    $(".down").on("click",function(){
-        $(".head").addClass("head-hide");
-    });
-    $(".home").on("click",function(){
-        $(".side").removeClass("showing");
-    });
-    $(".code-btn").on("click",function(){
-        $(".sec-B").addClass("showing");
-    });
-    $(".back-btn").on("click",function(){
-        $(".sec-B").removeClass("showing");
-    });
+
+	$("nav a").on("click", function(event){
+		event.preventDefault();
+		$("nav").addClass("fixed");
+		id = ($(this).attr("href"));
+		scrollVertical = $(id).offset().top;
+
+		$("body, html").animate({scrollTop: scrollVertical});
+	});
+
+	$(document).on("scroll", function(){
+		secondPage = $("nav li:nth-child(2) a").attr("href");
+
+		if ( $("body").scrollTop() >= $("nav").height() )
+		{
+			$("nav").addClass("fixed");
+		} else {
+			$("nav").removeClass("fixed");
+		}
+	});
+
 });
